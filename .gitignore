@@ -1,0 +1,3 @@
+docker/
+client/node_modules
+client/jsconfig.json
