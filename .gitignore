@@ -1,3 +1,4 @@
 docker/
 client/node_modules
 client/jsconfig.json
+__pycache__/*
