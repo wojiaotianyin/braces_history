@@ -1,0 +1,68 @@
+<div id="app">
+  <div class="container">
+    <img
+      alt="Vue logo"
+      src="../../static/ha_kyousei_man.png"
+      width="150"
+      heght="150"
+    />
+    <div class="inputs">
+      <div class="input_inner">
+        <div class="tag">日時：</div>
+        <v-date-picker v-model="date" mode="date" class="date_picker">
+          <template v-slot="{ inputValue, inputEvents }">
+            <input
+              class="px-2 py-1 border rounded focus:outline-none focus:border-blue-300"
+              :value="inputValue"
+              v-on="inputEvents"
+            />
+          </template>
+        </v-date-picker>
+      </div>
+      <div class="input_inner">
+        <div class="tag">金額：</div>
+        <input type="text" name="price" v-model="price" />&nbsp;円
+      </div>
+      <div class="input_inner">
+        <div class="tag">備考：</div>
+        <textarea name="memo" v-model="memo"></textarea>
+      </div>
+      <input type="submit" @click="send('/home')" name="value" value="追加" />
+    </div>
+    <h1 class="price_sum">合計金額：{{price_sum}}円</h1>
+    <div class="duration">
+      <div class="duration_changer">
+        <p>期間を絞る</p>
+        <div class="inner">
+          <div class="start">
+            開始日:&nbsp;
+            <select>
+              <option v-for="month in month_selector">{{month}}</option>
+            </select>
+          </div>
+          <div class="end">
+            終了日:&nbsp;
+            <select>
+              <option v-for="month in month_selector">{{month}}</option>
+            </select>
+          </div>
+          <input type="button" value="Clear" @click="clearFilter()">
+        </div>
+      </div>
+    </div>
+    <table border="1">
+      <tr>
+        <th v-for="data_name in th">{{data_name}}</th>
+      </tr>
+      <tr v-for="data in history" class="data_cell">
+        <td>{{data.datetime}}</td>
+        <td>{{data.price}}</td>
+        <td>{{data.detail}}</td>
+        <td><input type="button" value="編集" /></td>
+        <td>
+          <input type="button" value="削除" @click="deleteHistory(data.id)" />
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

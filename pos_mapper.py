@@ -36,7 +36,7 @@ class PostgreConnect:
         self.port = port
     
     def __connect(self):
-        print("dbname={0} user='{1}' password='{2}' host='{3}' port={4}".format(self.dbname,self.user, self.password, self.host, self.port))
+        # print("dbname={0} user='{1}' password='{2}' host='{3}' port={4}".format(self.dbname,self.user, self.password, self.host, self.port))
         return psycopg2.connect("postgresql://postgres:postgres@localhost:15432/postgres")
     
     def execute(self, sql):

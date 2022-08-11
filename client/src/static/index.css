@@ -1,0 +1,96 @@
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+#app .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#app .container img {
+  display: block;
+  margin: 0 auto;
+}
+
+#app .container .inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+}
+
+#app .container .inputs .input_inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 10px 0;
+}
+
+#app .container .inputs .input_inner .tag {
+  white-space: nowrap;
+}
+
+#app .container .inputs .input_inner textarea, #app .container .inputs .input_inner input, #app .container .inputs .input_inner .date_picker {
+  width: -webkit-fill-available;
+}
+
+#app .container .inputs input {
+  display: block;
+}
+
+#app .container .price_sum {
+  margin: 2rem 0 0;
+}
+
+#app .container .duration .duration_changer .inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#app .container .duration .duration_changer .inner .start, #app .container .duration .duration_changer .inner .end {
+  margin: 0px 5px;
+}
+
+#app .container table {
+  border-collapse: collapse;
+  margin: 3rem auto 2rem;
+  width: 1000px;
+  table-layout: fixed;
+}
+
+#app .container table tr.data_cell td {
+  padding: 0.5rem;
+}
+
+#app .container table tr.data_cell td:nth-child(2) {
+  text-align: end;
+}
+/*# sourceMappingURL=index.css.map */
