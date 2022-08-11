@@ -27,7 +27,7 @@
         <div class="tag">備考：</div>
         <textarea name="memo" v-model="memo"></textarea>
       </div>
-      <input type="submit" @click="send('/home')" name="value" value="追加" />
+      <input type="submit" @click="send('/home')" name="value" value="保存" />
     </div>
     <h1 class="price_sum">合計金額：{{price_sum}}円</h1>
     <div class="duration">
@@ -37,16 +37,18 @@
           <div class="start">
             開始日:&nbsp;
             <select>
+              <option></option>
               <option v-for="month in month_selector">{{month}}</option>
             </select>
           </div>
           <div class="end">
             終了日:&nbsp;
             <select>
+              <option></option>
               <option v-for="month in month_selector">{{month}}</option>
             </select>
           </div>
-          <input type="button" value="Clear" @click="clearFilter()">
+          <input type="button" class="clearBtn" value="クリア" @click="clearFilter()">
         </div>
       </div>
     </div>
@@ -58,9 +60,9 @@
         <td>{{data.datetime}}</td>
         <td>{{data.price}}</td>
         <td>{{data.detail}}</td>
-        <td><input type="button" value="編集" /></td>
+        <td><input type="button" class="editBtn" @click="updateData(data.id)" value="編集" /></td>
         <td>
-          <input type="button" value="削除" @click="deleteHistory(data.id)" />
+          <input type="button" class="deleteBtn" value="削除" @click="deleteHistory(data.id)" />
         </td>
       </tr>
     </table>

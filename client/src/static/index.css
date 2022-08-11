@@ -51,12 +51,26 @@
   white-space: nowrap;
 }
 
-#app .container .inputs .input_inner textarea, #app .container .inputs .input_inner input, #app .container .inputs .input_inner .date_picker {
+#app .container .inputs .input_inner textarea,
+#app .container .inputs .input_inner input,
+#app .container .inputs .input_inner .date_picker {
   width: -webkit-fill-available;
 }
 
 #app .container .inputs input {
   display: block;
+}
+
+#app .container .inputs input[type="submit"] {
+  background: #93ff6b;
+  display: block;
+  border: none;
+  color: #515151;
+  width: 70px;
+  margin: 0 auto;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
 }
 
 #app .container .price_sum {
@@ -75,8 +89,22 @@
           align-items: center;
 }
 
-#app .container .duration .duration_changer .inner .start, #app .container .duration .duration_changer .inner .end {
+#app .container .duration .duration_changer .inner .start,
+#app .container .duration .duration_changer .inner .end {
   margin: 0px 5px;
+}
+
+#app .container .duration .duration_changer .clearBtn {
+  background: #82fff9;
+  margin: 0 !important;
+  display: block;
+  border: none;
+  color: #515151;
+  width: 70px;
+  margin: 0 auto;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
 }
 
 #app .container table {
@@ -92,5 +120,29 @@
 
 #app .container table tr.data_cell td:nth-child(2) {
   text-align: end;
+}
+
+#app .container table .editBtn {
+  background: #93ff6b;
+  display: block;
+  border: none;
+  color: #515151;
+  width: 70px;
+  margin: 0 auto;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+#app .container table .deleteBtn {
+  background: #ff8a8a;
+  display: block;
+  border: none;
+  color: #515151;
+  width: 70px;
+  margin: 0 auto;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
 }
 /*# sourceMappingURL=index.css.map */

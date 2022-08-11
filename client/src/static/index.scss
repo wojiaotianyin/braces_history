@@ -1,3 +1,13 @@
+@mixin button {
+  display: block;
+  border: none;
+  color: rgb(81, 81, 81);
+  width: 70px;
+  margin: 0 auto;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -20,31 +30,43 @@
       margin: 0 auto;
       .input_inner {
         display: flex;
-        justify-content:center;
+        justify-content: center;
         margin: 10px 0;
-        .tag{
+        .tag {
           white-space: nowrap;
         }
-        textarea, input, .date_picker{
+        textarea,
+        input,
+        .date_picker {
           width: -webkit-fill-available;
         }
       }
       input {
         display: block;
       }
+      input[type="submit"] {
+        background: rgb(147, 255, 107);
+        @include button;
+      }
     }
     .price_sum {
       margin: 2rem 0 0;
     }
     .duration {
-      .duration_changer{
+      .duration_changer {
         .inner {
           display: flex;
           justify-content: center;
           align-items: center;
-          .start, .end {
+          .start,
+          .end {
             margin: 0px 5px;
           }
+        }
+        .clearBtn {
+          background:rgb(130, 255, 249);
+          margin: 0!important;
+          @include button;
         }
       }
     }
@@ -60,6 +82,14 @@
             text-align: end;
           }
         }
+      }
+      .editBtn {
+        background:rgb(147, 255, 107);
+        @include button;
+      }
+      .deleteBtn {
+        background: rgb(255, 138, 138);
+        @include button;
       }
     }
   }

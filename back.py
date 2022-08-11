@@ -36,6 +36,11 @@ def getHistory():
         }
     return data
 
+@app.route("/update", methods=["POST", "GET"])
+def updateHistory():
+   
+    return "OK"
+
 @app.route("/delete", methods=["POST", "GET"])
 def deleteHistory():
     id = json.loads(request.get_data())

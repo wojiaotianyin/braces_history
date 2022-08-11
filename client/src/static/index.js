@@ -20,8 +20,7 @@ export default {
     };
   },
   name: "App",
-  components: {
-  },
+  components: {},
   computed: {
     // errorMessage() {
     //   if (!this.date) return 'Date is required.';
@@ -84,6 +83,7 @@ export default {
           //GET処理
           if (req.request.responseURL.indexOf("get_history")) {
             this.history = req.data;
+            console.log(this.history);
             for (let i in this.history) {
               this.history[i].datetime = this.dateFormatter(
                 this.history[i].datetime
@@ -92,6 +92,7 @@ export default {
             }
           }
           this.month_selector = Array.from(new Set(this.month_selector));
+          this.price_sum = this.price_sum.toLocaleString();
         })
         .catch((err) => {
           console.log(err);
@@ -105,24 +106,36 @@ export default {
       let year = date.getUTCFullYear();
       let month = date.getUTCMonth() + 1;
       let d = date.getUTCDate();
-      let month_el = year +
-      "年" +
-      month.toString().padStart(2, "0") +
-      "月";
+      let month_el = year + "年" + month.toString().padStart(2, "0") + "月";
       this.month_selector.push(month_el);
-      return (
-        month_el +
-        d.toString().padStart(2, "0") +
-        "日 "
-      );
+      return month_el + d.toString().padStart(2, "0") + "日 ";
     },
     yenFormatter: function (yen) {
       this.price_sum += yen;
       return yen.toLocaleString() + "円";
     },
-    clearFilter: function(){},
+    clearFilter: function () {},
+    updateData: function (id) {
+      console.log(id);
+    },
+    // /**
+    //  * APIレスポンスUPDATE
+    //  * @param {*} url
+    //  * @param {*} data
+    //  */
+    // updateData(url, data) {
+    //   axios
+    //     .post(url, data)
+    //     .then((req) => {
+    //       console.log(req);
+    //       this.getHistory();
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // },
     /**
-     * APIレスポンス
+     * APIレスポンスDELETE
      * @param {*} url
      * @param {*} data
      */
