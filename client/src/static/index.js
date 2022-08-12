@@ -215,6 +215,12 @@ export default {
       }
     },
 
+    receiveChildMessage (saved) {
+      if(saved){
+        setTimeout(() => {this.openModal = false, this.getHistory(), 2000});
+      }
+    },
+
     /**
      * APIレスポンスDELETE
      * @param {*} id

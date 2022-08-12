@@ -17,17 +17,23 @@ export default {
   data() {
     return {
       date: null,
-      openModal: true,
       newMemo: "",
       newDate: "",
       newPrice: "",
+      message: "Hello from Child!",
+      saved: false,
     };
   },
   name: "modal_element",
   components: {},
   computed: {},
   watch: {},
-  mounted: function () {},
+  created() {
+    this.$emit("sendMessage", this.message);
+  },
+  mounted() {
+    
+  },
   methods: {
     saveData: function () {
       this.updateData(this.brace_data);
@@ -43,6 +49,8 @@ export default {
           .post("/update", data)
           .then((req) => {
             console.log(req);
+            this.saved = true;
+            this.$emit("dataSaved", this.saved);
           })
           .catch((err) => {
             console.log(err);

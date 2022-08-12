@@ -2,7 +2,7 @@
   <modal_element
     v-show="openModal"
     :brace_data="detail"
-    @my-click="parent_num = $event"
+    v-on:dataSaved="receiveChildMessage"
   ></modal_element>
   <div class="container">
     <img

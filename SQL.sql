@@ -25,3 +25,4 @@ INSERT INTO brace_history VALUES (default, '2022-05-10 00:00:00' , 11970, 'マ�
 INSERT INTO brace_history VALUES (default, '2022-05-23 00:00:00' , 6130, '小臼歯2本抜歯', now(), now());
 INSERT INTO brace_history VALUES (default, '2022-06-04 00:00:00' , 1780, '清掃', now(), now());
 INSERT INTO brace_history VALUES (default, '2022-06-10 00:00:00' , 7780, '上顎全体装置設置', now(), now());
+INSERT INTO brace_history VALUES (default, '2022-07-09 00:00:00' , 15270, '下顎マルチブラケット8本', now(), now());
