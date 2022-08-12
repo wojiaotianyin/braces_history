@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VCalendar from "v-calendar";
 Vue.use(VCalendar);
+import modal_element from "../template/home/ModalElement.vue";
 const axios = require("axios").create();
 axios.defaults.baseURL = "http://127.0.0.1:5050";
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
@@ -16,22 +17,15 @@ export default {
       history: [],
       th: ["日時", "診療費", "備考", "編集", "削除"],
       price_sum: 0,
-      range: { start: new Date(2020, 0, 1), end: new Date(2020, 0, 5) },
+      parent_num: 100,
+      openModal: false,
+      detail: { id: "", date: "", price: "", memo: "" },
     };
   },
   name: "App",
-  components: {},
-  computed: {
-    // errorMessage() {
-    //   if (!this.date) return 'Date is required.';
-    //   return '';
-    // },
-  },
-  watch: {
-    // date: function () {
-    //   console.log(this.date);
-    // },
-  },
+  components: { modal_element },
+  computed: {},
+  watch: {},
   mounted: function () {
     this.getHistory();
   },
@@ -83,7 +77,6 @@ export default {
           //GET処理
           if (req.request.responseURL.indexOf("get_history")) {
             this.history = req.data;
-            console.log(this.history);
             for (let i in this.history) {
               this.history[i].datetime = this.dateFormatter(
                 this.history[i].datetime
@@ -110,30 +103,51 @@ export default {
       this.month_selector.push(month_el);
       return month_el + d.toString().padStart(2, "0") + "日 ";
     },
+
+    /**
+     * datePickerに合わせるため、フォーマットを元に戻す。
+     * @param {*} datetime 
+     * @returns 
+     */
+    revertDateFormat: function (datetime) {
+      let base = datetime.split("年");
+      const y = base[0];
+      const m = base[1].split("月")[0];
+      const d = base[1].split("月")[1].replace("日", "").replace(/\s+/g, "");
+      return new Date(y, m - 1, d);
+    },
     yenFormatter: function (yen) {
       this.price_sum += yen;
       return yen.toLocaleString() + "円";
     },
     clearFilter: function () {},
-    updateData: function (id) {
-      console.log(id);
+
+    /**
+     * モーダル用のデータ
+     * @param {*} id 
+     * @param {*} time 
+     * @param {*} price 
+     * @param {*} detail 
+     */
+    updateData: function (id, time, price, detail) {
+      this.openModal = true;
+      this.detail.date = this.revertDateFormat(time);
+      this.detail.id = id;
+      this.detail.memo = detail;
+      this.detail.price = price.replace(",", "").replace("円", "");
     },
-    // /**
-    //  * APIレスポンスUPDATE
-    //  * @param {*} url
-    //  * @param {*} data
-    //  */
-    // updateData(url, data) {
-    //   axios
-    //     .post(url, data)
-    //     .then((req) => {
-    //       console.log(req);
-    //       this.getHistory();
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // },
+
+    /**
+     * モーダルの外側をクリックした時を感知
+     * @param {*} event 
+     */
+    detectOutsideClick: function (event) {
+      let target_ = event.target.id;
+      if (target_ == "modal_element") {
+        this.openModal = false;
+      }
+    },
+ 
     /**
      * APIレスポンスDELETE
      * @param {*} url

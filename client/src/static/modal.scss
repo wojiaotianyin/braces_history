@@ -1,3 +1,33 @@
-#main {
-    background: #333;
+#modal_element {
+  background: #0000006e;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  .modal-wrapper {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    right: 0;
+    width: 600px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 1px 2px 2px 1px #333;
+    .inputs {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      margin: 30px 60px;
+      input, textarea {
+        display: block;
+        margin: 5px 0;
+      }
+      .el {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
 }

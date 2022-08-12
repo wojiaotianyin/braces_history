@@ -6,35 +6,52 @@ axios.defaults.baseURL = "http://127.0.0.1:5050";
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
 
 export default {
-  data() {
-    return {
-      count: 4,
-      date: null,
+  props: {
+    brace_data: {
+      id: "",
+      date: "",
       price: "",
       memo: "",
-      month_selector: [],
-      history: [],
-      th: ["日時", "診療費", "備考", "編集", "削除"],
-      price_sum: 0,
-      range: { start: new Date(2020, 0, 1), end: new Date(2020, 0, 5) },
+    },
+  },
+  data() {
+    return {
+      date: null,
+      openModal: true,
+      child_num: 0,
+      newMemo: "",
+      newDate: "",
+      newPrice: "",
     };
   },
-  name: "App",
+  name: "modal_element",
   components: {},
-  computed: {
-    // errorMessage() {
-    //   if (!this.date) return 'Date is required.';
-    //   return '';
-    // },
-  },
-  watch: {
-    // date: function () {
-    //   console.log(this.date);
-    // },
-  },
-  mounted: function () {
-    this.getHistory();
-  },
+  computed: {},
+  watch: {},
+  mounted: function () {},
   methods: {
-  }
+    saveData: function () {
+      // console.log(this.brace_data);
+      this.updateData(this.brace_data);
+    },
+    /**
+     * APIレスポンスUPDATE
+     * @param {*} url
+     * @param {*} data
+     */
+    updateData(data) {
+      if (window.confirm("変更を保存してよろしいでしょうか？")) {
+        axios
+          .post("/update", data)
+          .then((req) => {
+            console.log(req);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        return;
+      }
+    },
+  },
 };

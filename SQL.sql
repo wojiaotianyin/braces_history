@@ -19,7 +19,7 @@ INSERT INTO brace_history VALUES (default, '2022-01-30 00:00:00' , 12550, '模�
 INSERT INTO brace_history VALUES (default, '2022-03-04 15:30:00' , 8290, '口腔機能診断', now(), now());
 INSERT INTO brace_history VALUES (default, '2022-03-12 15:30:00' , 2430, 'スケーリング等', now(), now());
 INSERT INTO brace_history VALUES (default, '2022-03-30 00:00:00' , 160, '歯間ゴム', now(), now());
-INSERT INTO brace_history VALUES (default, '2022-04-02 00:00:00' , 1030, '鶴木クリニック初診料', now(), now());
+INSERT INTO brace_history VALUES (default, '2022-04-02 00:00:00' , 1030, 'クリニック初診料', now(), now());
 INSERT INTO brace_history VALUES (default, '2022-04-06 00:00:00' , 13930, 'リンガルアーチ装着', now(), now());
 INSERT INTO brace_history VALUES (default, '2022-05-10 00:00:00' , 11970, 'マルチブラケット6本', now(), now());
 INSERT INTO brace_history VALUES (default, '2022-05-23 00:00:00' , 6130, '小臼歯2本抜歯', now(), now());

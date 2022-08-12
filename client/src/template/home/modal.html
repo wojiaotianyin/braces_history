@@ -1,0 +1,27 @@
+<div id="modal_element">
+  <div class="modal-wrapper">
+    <div class="inputs">
+      <div class="el">
+        <div>日時:&nbsp;</div>
+        <v-date-picker v-model="brace_data.date" mode="date" class="date_picker">
+          <template v-slot="{ inputValue, inputEvents }">
+            <input
+              class="px-2 py-1 border rounded focus:outline-none focus:border-blue-300"
+              :value="inputValue"
+              v-on="inputEvents"
+            />
+          </template>
+        </v-date-picker>
+      </div>
+      <div class="el">
+        <div>金額:&nbsp;</div>
+        <input type="number" v-model="brace_data.price"/>円
+      </div>
+      <div class="el">
+        <div>備考:&nbsp;</div>
+        <textarea v-model="brace_data.memo"></textarea>
+      </div>
+      <input type="button" value="変更を保存" @click="saveData"/>
+    </div>
+  </div>
+</div>

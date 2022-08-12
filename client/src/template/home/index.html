@@ -1,4 +1,6 @@
-<div id="app">
+<div id="app" @click="detectOutsideClick($event)">
+  <modal_element v-show="openModal" :brace_data="detail" @my-click='parent_num = $event'></modal_element>
+  <!-- <p>parent_num: {{ parent_num }}</p> -->
   <div class="container">
     <img
       alt="Vue logo"
@@ -60,7 +62,7 @@
         <td>{{data.datetime}}</td>
         <td>{{data.price}}</td>
         <td>{{data.detail}}</td>
-        <td><input type="button" class="editBtn" @click="updateData(data.id)" value="編集" /></td>
+        <td><input type="button" class="editBtn" @click="updateData(data.id, data.datetime, data.price, data.detail)" value="編集" /></td>
         <td>
           <input type="button" class="deleteBtn" value="削除" @click="deleteHistory(data.id)" />
         </td>

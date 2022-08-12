@@ -2,6 +2,9 @@ from flask import Flask, render_template, redirect, url_for, request
 from flask_cors import CORS
 from pos_mapper import PostgreConnect
 import json
+from datetime import datetime
+from dateutil import tz
+JST = tz.gettz('Asia/Tokyo')
 
 
 app = Flask(__name__, static_folder="./client/src/static",
@@ -18,13 +21,20 @@ def home():
     if request.method == "POST":
         data = request.get_data()
         data = json.loads(data)
-        psql.execute("insert into {0} values(default, TIMESTAMP '{1}', '{2}', '{3}', now(), now())".format(table_name, data['date'], data['expense'], data['detail']))
+        psql.execute("INSERT INTO {0} VALUES(default, TIMESTAMP '{1}', '{2}', '{3}', now(), now())"
+                     .format(table_name,
+                             data['date'],
+                             data[
+                                 'expense'],
+                             data[
+                                 'detail']))
     return "hello"
 
 
 @app.route("/get_history", methods=["POST", "GET"])
-def getHistory():
-    cur = psql.execute_query("select {0} from {1}".format(base_columns, table_name))
+def get_history():
+    cur = psql.execute_query(
+        "SELECT {0} FROM {1}".format(base_columns, table_name))
     data = {}
     for i in range(len(cur)):
         val = cur[i]
@@ -36,15 +46,35 @@ def getHistory():
         }
     return data
 
+
+def convertDateformat(visit_date):
+    date_time_obj = datetime.strptime(visit_date, '%Y-%m-%dT%H:%M:%S.%f%z')
+    newDate = date_time_obj.astimezone(JST).isoformat()
+    return newDate
+
+
 @app.route("/update", methods=["POST", "GET"])
-def updateHistory():
-   
+def update_history():
+    if request.method == "POST":
+        data = request.get_data()
+        data = json.loads(data)
+        id = data['id']
+        new_date = convertDateformat(data['date'])
+        new_price = data['price']
+        new_memo = data['memo']
+        psql.execute("UPDATE {0} SET visit_date = TIMESTAMP '{1}', price = '{2}', memo = '{3}', update_date = now() WHERE id = {4}"
+                     .format(table_name,
+                             new_date,
+                             new_price,
+                             new_memo,
+                             id))
     return "OK"
 
+
 @app.route("/delete", methods=["POST", "GET"])
-def deleteHistory():
+def delete_history():
     id = json.loads(request.get_data())
-    psql.execute("delete from {0} where id = {1}".format(table_name, id))   
+    psql.execute("delete from {0} where id = {1}".format(table_name, id))
     return "OK"
 
 
