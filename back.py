@@ -16,8 +16,8 @@ table_name = 'brace_history'
 base_columns = 'id, visit_date, price, memo'
 
 
-@app.route("/home", methods=["POST", "GET"])
-def home():
+@app.route("/post_data", methods=["POST", "GET"])
+def post_data():
     if request.method == "POST":
         data = request.get_data()
         data = json.loads(data)
@@ -55,6 +55,7 @@ def convertDateformat(visit_date):
 
 @app.route("/update", methods=["POST", "GET"])
 def update_history():
+    print(request.method)
     if request.method == "POST":
         data = request.get_data()
         data = json.loads(data)
@@ -74,7 +75,7 @@ def update_history():
 @app.route("/delete", methods=["POST", "GET"])
 def delete_history():
     id = json.loads(request.get_data())
-    psql.execute("delete from {0} where id = {1}".format(table_name, id))
+    psql.execute("DELETE FROM {0} WHERE id = {1}".format(table_name, id))
     return "OK"
 
 

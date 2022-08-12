@@ -1,6 +1,9 @@
 <div id="app" @click="detectOutsideClick($event)">
-  <modal_element v-show="openModal" :brace_data="detail" @my-click='parent_num = $event'></modal_element>
-  <!-- <p>parent_num: {{ parent_num }}</p> -->
+  <modal_element
+    v-show="openModal"
+    :brace_data="detail"
+    @my-click="parent_num = $event"
+  ></modal_element>
   <div class="container">
     <img
       alt="Vue logo"
@@ -29,7 +32,12 @@
         <div class="tag">備考：</div>
         <textarea name="memo" v-model="memo"></textarea>
       </div>
-      <input type="submit" @click="send('/home')" name="value" value="保存" />
+      <input
+        type="submit"
+        @click="sendData('/post_data')"
+        name="value"
+        value="保存"
+      />
     </div>
     <h1 class="price_sum">合計金額：{{price_sum}}円</h1>
     <div class="duration">
@@ -38,35 +46,56 @@
         <div class="inner">
           <div class="start">
             開始日:&nbsp;
-            <select>
+            <select v-model="start_date" :bind="filteringList">
               <option></option>
               <option v-for="month in month_selector">{{month}}</option>
             </select>
           </div>
           <div class="end">
             終了日:&nbsp;
-            <select>
+            <select v-model="end_date" :bind="filteringList">
               <option></option>
               <option v-for="month in month_selector">{{month}}</option>
             </select>
           </div>
-          <input type="button" class="clearBtn" value="クリア" @click="clearFilter()">
+          <input
+            type="button"
+            class="clearBtn"
+            value="クリア"
+            @click="clearFilter()"
+          />
         </div>
       </div>
     </div>
-    <table border="1">
-      <tr>
-        <th v-for="data_name in th">{{data_name}}</th>
-      </tr>
-      <tr v-for="data in history" class="data_cell">
-        <td>{{data.datetime}}</td>
-        <td>{{data.price}}</td>
-        <td>{{data.detail}}</td>
-        <td><input type="button" class="editBtn" @click="updateData(data.id, data.datetime, data.price, data.detail)" value="編集" /></td>
-        <td>
-          <input type="button" class="deleteBtn" value="削除" @click="deleteHistory(data.id)" />
-        </td>
-      </tr>
-    </table>
+    <div class="" v-if="history.length == 0">データがありません。</div>
+    <div class="table_wrapper" v-else>
+      <div class="counter">来院数：<b>{{history.length}}</b>回</div>
+      <table border="1">
+        <tr>
+          <th v-for="data_name in th">{{data_name}}</th>
+        </tr>
+        <tr v-for="data in history" class="data_cell">
+          <td>{{data.datetime}}</td>
+          <td>{{data.price}}</td>
+          <td>{{data.detail}}</td>
+          <td>
+            <input
+              type="button"
+              class="editBtn"
+              @click="updateData(data.id, data.datetime, data.price, data.detail)"
+              value="編集"
+            />
+          </td>
+          <td>
+            <input
+              type="button"
+              class="deleteBtn"
+              value="削除"
+              @click="requestDelete(data.id)"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>

@@ -15,34 +15,54 @@ export default {
       memo: "",
       month_selector: [],
       history: [],
+      history_cp: [],
       th: ["日時", "診療費", "備考", "編集", "削除"],
       price_sum: 0,
       parent_num: 100,
       openModal: false,
       detail: { id: "", date: "", price: "", memo: "" },
+      start_date: "",
+      end_date: "",
     };
   },
   name: "App",
   components: { modal_element },
-  computed: {},
-  watch: {},
+  computed: {
+    filteringList() {
+      if (this.start_date != "" && this.end_date != "") {
+        const start = this.getRidOfChar(this.start_date);
+        const end = this.getRidOfChar(this.end_date);
+        if (start > end) {
+          return;
+        } else {
+          const result = this.history.filter(
+            (el) =>
+              this.getRidOfChar(el.datetime) >= start &&
+              this.getRidOfChar(el.datetime) <= end
+          );
+          this.history = result;
+        }
+      }
+    },
+  },
+  watch: {
+  },
   mounted: function () {
     this.getHistory();
   },
   methods: {
-    showCalendar: function () {},
     /**
      * 歯列矯正履歴を取得
      */
     getHistory: function () {
-      this.requestGet("/get_history", null);
+      this.requestGet("/get_history");
     },
 
     /**
      * SQLにデータを格納
      * @param {*} url
      */
-    send: function (url) {
+    sendData: function (url) {
       const sqlDateConverter = (date) => {
         let date_ = new Date(date);
         let year = date_.getFullYear();
@@ -63,37 +83,65 @@ export default {
         expense: this.price,
         detail: this.memo,
       };
-      this.requestGet(url, data);
+      this.requestPost(url, data);
     },
     /**
      * APIレスポンス
      * @param {*} url
      * @param {*} data
      */
-    requestGet(url, data) {
+    requestGet(url) {
       axios
-        .post(url, data)
+        .get(url)
         .then((req) => {
+          this.history = [];
           //GET処理
-          if (req.request.responseURL.indexOf("get_history")) {
-            this.history = req.data;
-            for (let i in this.history) {
-              this.history[i].datetime = this.dateFormatter(
-                this.history[i].datetime
-              );
-              this.history[i].price = this.yenFormatter(this.history[i].price);
-            }
+          this.price_sum = 0;
+          for (let j in req.data) {
+            this.history.push(req.data[j]);
+          }
+
+          this.history_cp = this.history;
+
+          for (let i in this.history) {
+            this.history[i].datetime = this.dateFormatter(
+              this.history[i].datetime
+            );
+            this.history[i].price = this.yenFormatter(this.history[i].price);
           }
           this.month_selector = Array.from(new Set(this.month_selector));
           this.price_sum = this.price_sum.toLocaleString();
+          this.history = this.history.sort(
+            (b, a) =>
+              this.revertDateFormat(b.datetime) -
+              this.revertDateFormat(a.datetime)
+          );
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    deleteHistory: function (id) {
-      this.requestDelete("/delete", id);
+
+    /**
+     * 歯列矯正歴を保存する
+     * @param {*} url
+     * @param {*} data
+     */
+    requestPost(url, data) {
+      axios
+        .post(url, data)
+        .then((req) => {
+          console.log(req);
+          this.getHistory();
+          this.date = "";
+          this.price = "";
+          this.memo = "";
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
+
     dateFormatter: function (datetime) {
       let date = new Date(datetime);
       let year = date.getUTCFullYear();
@@ -106,8 +154,8 @@ export default {
 
     /**
      * datePickerに合わせるため、フォーマットを元に戻す。
-     * @param {*} datetime 
-     * @returns 
+     * @param {*} datetime
+     * @returns
      */
     revertDateFormat: function (datetime) {
       let base = datetime.split("年");
@@ -116,18 +164,37 @@ export default {
       const d = base[1].split("月")[1].replace("日", "").replace(/\s+/g, "");
       return new Date(y, m - 1, d);
     },
+
     yenFormatter: function (yen) {
       this.price_sum += yen;
       return yen.toLocaleString() + "円";
     },
-    clearFilter: function () {},
+
+    getRidOfChar: function (date) {
+      if (date.length == 8) {
+        let newDate = date.replace("年", "").replace("月", "");
+        return newDate;
+      } else {
+        let newDate = date
+          .replace("年", "")
+          .replace("月", "")
+          .replace("日", "");
+        return newDate;
+      }
+    },
+
+    clearFilter: function () {
+      this.start_date = "";
+      this.end_date = "";
+      this.history = this.history_cp;
+    },
 
     /**
      * モーダル用のデータ
-     * @param {*} id 
-     * @param {*} time 
-     * @param {*} price 
-     * @param {*} detail 
+     * @param {*} id
+     * @param {*} time
+     * @param {*} price
+     * @param {*} detail
      */
     updateData: function (id, time, price, detail) {
       this.openModal = true;
@@ -139,7 +206,7 @@ export default {
 
     /**
      * モーダルの外側をクリックした時を感知
-     * @param {*} event 
+     * @param {*} event
      */
     detectOutsideClick: function (event) {
       let target_ = event.target.id;
@@ -147,22 +214,25 @@ export default {
         this.openModal = false;
       }
     },
- 
+
     /**
      * APIレスポンスDELETE
-     * @param {*} url
-     * @param {*} data
+     * @param {*} id
      */
-    requestDelete(url, data) {
-      axios
-        .post(url, data)
-        .then((req) => {
-          console.log(req);
-          this.getHistory();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    requestDelete(id) {
+      if (window.confirm("削除してよろしいでしょうか？")) {
+        axios
+          .post("/delete", id)
+          .then((req) => {
+            console.log(req);
+            this.getHistory();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        return;
+      }
     },
   },
 };

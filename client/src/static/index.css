@@ -33,7 +33,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 300px;
+  width: 210px;
   margin: 0 auto;
 }
 
@@ -55,6 +55,11 @@
 #app .container .inputs .input_inner input,
 #app .container .inputs .input_inner .date_picker {
   width: -webkit-fill-available;
+}
+
+#app .container .inputs .input_inner textarea {
+  resize: none;
+  height: 40px;
 }
 
 #app .container .inputs input {
@@ -107,22 +112,38 @@
   padding: 4px 8px;
 }
 
-#app .container table {
+#app .container .table_wrapper {
+  margin: 3rem auto 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 1000px;
+}
+
+#app .container .table_wrapper .counter {
+  text-align: start;
+}
+
+#app .container .table_wrapper table {
   border-collapse: collapse;
-  margin: 3rem auto 2rem;
+  margin: 0 auto 2rem;
   width: 1000px;
   table-layout: fixed;
 }
 
-#app .container table tr.data_cell td {
+#app .container .table_wrapper table tr.data_cell td {
   padding: 0.5rem;
 }
 
-#app .container table tr.data_cell td:nth-child(2) {
+#app .container .table_wrapper table tr.data_cell td:nth-child(2) {
   text-align: end;
 }
 
-#app .container table .editBtn {
+#app .container .table_wrapper table .editBtn {
   background: #93ff6b;
   display: block;
   border: none;
@@ -134,7 +155,7 @@
   padding: 4px 8px;
 }
 
-#app .container table .deleteBtn {
+#app .container .table_wrapper table .deleteBtn {
   background: #ff8a8a;
   display: block;
   border: none;

@@ -23,10 +23,28 @@
         display: block;
         margin: 5px 0;
       }
+      textarea{
+        resize: none;
+        height: 40px;
+      }
       .el {
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+      input[type="button"]{
+        width: 100px;
+        margin: 20px auto 0;
+        border: none;
+        background: #444;
+        border-radius: 20px;
+        cursor: pointer;
+        padding: 5px 10px;
+        color: white;
+        transition: .3s;
+        &:hover {
+          background:rgb(120, 120, 120);
+        }
       }
     }
   }

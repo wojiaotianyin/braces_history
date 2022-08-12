@@ -26,7 +26,7 @@
       display: flex;
       justify-content: center;
       flex-direction: column;
-      width: 300px;
+      width: 210px;
       margin: 0 auto;
       .input_inner {
         display: flex;
@@ -39,6 +39,10 @@
         input,
         .date_picker {
           width: -webkit-fill-available;
+        }
+        textarea{
+          resize: none;
+          height: 40px;
         }
       }
       input {
@@ -64,32 +68,41 @@
           }
         }
         .clearBtn {
-          background:rgb(130, 255, 249);
-          margin: 0!important;
+          background: rgb(130, 255, 249);
+          margin: 0 !important;
           @include button;
         }
       }
     }
-    table {
-      border-collapse: collapse;
-      margin: 3rem auto 2rem;
+    .table_wrapper {
+      .counter {
+        text-align:start;
+      }
+      margin: 3rem auto 0;
+      display: flex;
+      flex-direction: column;
       width: 1000px;
-      table-layout: fixed;
-      tr.data_cell {
-        td {
-          padding: 0.5rem;
-          &:nth-child(2) {
-            text-align: end;
+      table {
+        border-collapse: collapse;
+        margin: 0 auto 2rem;
+        width: 1000px;
+        table-layout: fixed;
+        tr.data_cell {
+          td {
+            padding: 0.5rem;
+            &:nth-child(2) {
+              text-align: end;
+            }
           }
         }
-      }
-      .editBtn {
-        background:rgb(147, 255, 107);
-        @include button;
-      }
-      .deleteBtn {
-        background: rgb(255, 138, 138);
-        @include button;
+        .editBtn {
+          background: rgb(147, 255, 107);
+          @include button;
+        }
+        .deleteBtn {
+          background: rgb(255, 138, 138);
+          @include button;
+        }
       }
     }
   }

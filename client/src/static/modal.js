@@ -18,7 +18,6 @@ export default {
     return {
       date: null,
       openModal: true,
-      child_num: 0,
       newMemo: "",
       newDate: "",
       newPrice: "",
@@ -31,7 +30,6 @@ export default {
   mounted: function () {},
   methods: {
     saveData: function () {
-      // console.log(this.brace_data);
       this.updateData(this.brace_data);
     },
     /**

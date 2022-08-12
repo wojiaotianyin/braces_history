@@ -38,6 +38,11 @@
   margin: 5px 0;
 }
 
+#modal_element .modal-wrapper .inputs textarea {
+  resize: none;
+  height: 40px;
+}
+
 #modal_element .modal-wrapper .inputs .el {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -48,5 +53,22 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+#modal_element .modal-wrapper .inputs input[type="button"] {
+  width: 100px;
+  margin: 20px auto 0;
+  border: none;
+  background: #444;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 5px 10px;
+  color: white;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+#modal_element .modal-wrapper .inputs input[type="button"]:hover {
+  background: #787878;
 }
 /*# sourceMappingURL=modal.css.map */
