@@ -28,3 +28,6 @@ INSERT INTO brace_history VALUES (default, '2022-06-10 00:00:00' , 7780, '上顎
 INSERT INTO brace_history VALUES (default, '2022-07-09 00:00:00' , 15270, '下顎マルチブラケット8本', now(), now());
 INSERT INTO brace_history VALUES (default, '2022-08-13 00:00:00' , 14010, '下顎マルチブラケット全歯', now(), now());
 INSERT INTO brace_history VALUES (default, '2022-09-10 00:00:00' , 6270, '調整・パワーチェーン', now(), now());
+INSERT INTO brace_history VALUES (default, '2022-09-17 00:00:00' , 1810, '駅前歯科清掃', now(), now());
+INSERT INTO brace_history VALUES (default, '2022-10-15 00:00:00' , 6870, '調整・パワーチェーン', now(), now());
+INSERT INTO brace_history VALUES (default, '2022-11-12 00:00:00' , 9080, '上顎ステンレス', now(), now());
