@@ -31,3 +31,15 @@ INSERT INTO brace_history VALUES (default, '2022-09-10 00:00:00' , 6270, '調整
 INSERT INTO brace_history VALUES (default, '2022-09-17 00:00:00' , 1810, '駅前歯科清掃', now(), now());
 INSERT INTO brace_history VALUES (default, '2022-10-15 00:00:00' , 6870, '調整・パワーチェーン', now(), now());
 INSERT INTO brace_history VALUES (default, '2022-11-12 00:00:00' , 9080, '上顎ステンレス', now(), now());
+INSERT INTO brace_history VALUES (default, '2022-12-12 00:00:00' , 3000, 'ゴム装着', now(), now());
+INSERT INTO brace_history VALUES (default, '2023-1-14 00:00:00' , 6700, '調整・パワーチェーン', now(), now());
+INSERT INTO brace_history VALUES (default, '2023-2-11 00:00:00' , 5160, '調整・パワーチェーン', now(), now());
+INSERT INTO brace_history VALUES (default, '2023-3-11 00:00:00' , 3600, '調整・パワーチェーン、リンガルアーチ外れる', now(), now());
+INSERT INTO brace_history VALUES (default, '2023-4-14 00:00:00' , 4030, '調整・ゴム掛けなし', now(), now());
+INSERT INTO brace_history VALUES (default, '2023-5-13 00:00:00' , 3040, '調整・結紮', now(), now());
+INSERT INTO brace_history VALUES (default, '2023-6-13 00:00:00' , 6040, '調整、レントゲン、型取り', now(), now());
+INSERT INTO brace_history VALUES (default, '2023-7-15 00:00:00' , 9790, '保険料全額負担', now(), now());
+INSERT INTO brace_history VALUES (default, '2023-8-12 00:00:00' , 2910, '調整', now(), now());
+INSERT INTO brace_history VALUES (default, '2023-9-16 00:00:00' , 2920, '調整', now(), now());
+
+select SUM(price) as total from brace_history;
