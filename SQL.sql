@@ -41,5 +41,9 @@ INSERT INTO brace_history VALUES (default, '2023-6-13 00:00:00' , 6040, '調整�
 INSERT INTO brace_history VALUES (default, '2023-7-15 00:00:00' , 9790, '保険料全額負担', now(), now());
 INSERT INTO brace_history VALUES (default, '2023-8-12 00:00:00' , 2910, '調整', now(), now());
 INSERT INTO brace_history VALUES (default, '2023-9-16 00:00:00' , 2920, '調整', now(), now());
+INSERT INTO brace_history VALUES (default, '2023-10-14 00:00:00' , 2940, '調整', now(), now());
+INSERT INTO brace_history VALUES (default, '2023-11-11 00:00:00' , 2000, '調整', now(), now());
+INSERT INTO brace_history VALUES (default, '2023-12-09 00:00:00' , 3990, '調整', now(), now());
+INSERT INTO brace_history VALUES (default, '2024-01-13 00:00:00' , 2750, '調整, 手術目処つく', now(), now());
 
 select SUM(price) as total from brace_history;
