@@ -56,6 +56,12 @@ INSERT INTO brace_history VALUES (default, '2024-09-06 00:00:00' , 7090, '調整
 INSERT INTO brace_history VALUES (default, '2024-10-12 00:00:00' , 9380, '調整', now(), now());
 INSERT INTO brace_history VALUES (default, '2024-11-06 00:00:00' , 12370, '手術用ワイヤー装着', now(), now());
 INSERT INTO brace_history VALUES (default, '2024-11-13 00:00:00' , 69810, '手術・入院', now(), now());
+INSERT INTO brace_history VALUES (default, '2024-11-30 00:00:00' , 480, '術後矯正', now(), now());
+INSERT INTO brace_history VALUES (default, '2024-12-24 00:00:00' , 13280, '術後矯正', now(), now());
+INSERT INTO brace_history VALUES (default, '2025-01-25 00:00:00' , 8960, '術後矯正', now(), now());
+INSERT INTO brace_history VALUES (default, '2025-02-13 00:00:00' , 2780, '術後矯正', now(), now());
+INSERT INTO brace_history VALUES (default, '2025-03-13 00:00:00' , 3960, '術後矯正', now(), now());
+INSERT INTO brace_history VALUES (default, '2025-04-13 00:00:00' , 5480, '術後矯正', now(), now());
 
 select SUM(price) as total from brace_history;
 select * from brace_history order by visit_date desc;
