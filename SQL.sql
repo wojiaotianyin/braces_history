@@ -48,6 +48,15 @@ INSERT INTO brace_history VALUES (default, '2024-01-13 00:00:00' , 2750, '調整
 INSERT INTO brace_history VALUES (default, '2024-02-10 00:00:00' , 2180, '調整', now(), now());
 INSERT INTO brace_history VALUES (default, '2024-03-09 00:00:00' , 2000, '調整', now(), now());
 INSERT INTO brace_history VALUES (default, '2024-04-13 00:00:00' , 2790, '調整, 隙間埋まる', now(), now());
-INSERT INTO brace_history VALUES (default, '2024-04-13 00:00:00' , 2730, '調整', now(), now());
+INSERT INTO brace_history VALUES (default, '2024-05-11 00:00:00' , 2730, '調整', now(), now());
+INSERT INTO brace_history VALUES (default, '2024-06-08 00:00:00' , 1830, '調整', now(), now());
+INSERT INTO brace_history VALUES (default, '2024-07-16 00:00:00' , 1860, '調整', now(), now());
+INSERT INTO brace_history VALUES (default, '2024-08-10 00:00:00' , 1860, '調整', now(), now());
+INSERT INTO brace_history VALUES (default, '2024-09-06 00:00:00' , 7090, '調整', now(), now());
+INSERT INTO brace_history VALUES (default, '2024-10-12 00:00:00' , 9380, '調整', now(), now());
+INSERT INTO brace_history VALUES (default, '2024-11-06 00:00:00' , 12370, '手術用ワイヤー装着', now(), now());
+INSERT INTO brace_history VALUES (default, '2024-11-13 00:00:00' , 69810, '手術・入院', now(), now());
 
 select SUM(price) as total from brace_history;
+select * from brace_history order by visit_date desc;
+-- sudo -u postgres psql
