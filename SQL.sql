@@ -62,6 +62,9 @@ INSERT INTO brace_history VALUES (default, '2025-01-25 00:00:00' , 8960, '術後
 INSERT INTO brace_history VALUES (default, '2025-02-13 00:00:00' , 2780, '術後矯正', now(), now());
 INSERT INTO brace_history VALUES (default, '2025-03-13 00:00:00' , 3960, '術後矯正', now(), now());
 INSERT INTO brace_history VALUES (default, '2025-04-13 00:00:00' , 5480, '術後矯正', now(), now());
+INSERT INTO brace_history VALUES (default, '2025-05-13 00:00:00' , 5290, '術前検診', now(), now());
+INSERT INTO brace_history VALUES (default, '2025-05-24 00:00:00' , 6670, '術後矯正', now(), now());
+INSERT INTO brace_history VALUES (default, '2025-06-03 00:00:00' , 79970, 'プレート除去手術', now(), now());
 
 select SUM(price) as total from brace_history;
 select * from brace_history order by visit_date desc;
